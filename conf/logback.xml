@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE xml>
+<configuration>
+  <property name="LOG_PATH" value="log" />
+  <property name="LOG_NAME_AUDIT" value="logback-audit" />
+  <property name="LOG_NAME_DAILY" value="logback-daily" />
+  <property name="LOG_NAME_METRIC" value="logback-metric" />
+  <property name="applicationName" value="jla_02" scope="context" />
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%d{dd.MM.yyyy HH:mm:ss.SSS} [%level] %logger [thread=%thread, message=%msg]%n</pattern>
+    </encoder>
+  </appender>
+
+  <property name="applicationName" value="jla_02" scope="context" />
+
+  <appender name="relp-daily" class="com.teragrep.jla_01.RlpLogbackAppender">
+    <relpHostAddress>localhost</relpHostAddress>
+    <relpPort>1666</relpPort>
+    <enableEventId48577>true</enableEventId48577>
+    <appName>logback-daily</appName>
+    <hostname>javalogger-example</hostname>
+    <connectionTimeout>5000</connectionTimeout>
+    <writeTimeout>2000</writeTimeout>
+    <readTimeout>15000</readTimeout>
+    <encoder>
+      <pattern>%-4relative %X{requestId} [%thread] %-5level %logger{35} Daily - %msg</pattern>
+    </encoder>
+    <filter class="ch.qos.logback.core.filter.EvaluatorFilter">
+      <evaluator class="ch.qos.logback.classic.boolex.OnMarkerEvaluator">
+	<marker>DAILY</marker>
+      </evaluator>
+      <onMismatch>DENY</onMismatch>
+      <onMatch>ACCEPT</onMatch>
+    </filter>
+  </appender>
+
+  <appender name="relp-metric" class="com.teragrep.jla_01.RlpLogbackAppender">
+    <relpHostAddress>localhost</relpHostAddress>
+    <relpPort>1666</relpPort>
+    <enableEventId48577>true</enableEventId48577>
+    <appName>logback-metric</appName>
+    <hostname>javalogger-example</hostname>
+    <connectionTimeout>5000</connectionTimeout>
+    <writeTimeout>2000</writeTimeout>
+    <readTimeout>15000</readTimeout>
+    <encoder>
+      <pattern>%-4relative %X{requestId} [%thread] %-5level %logger{35} Metric - %msg</pattern>
+    </encoder>
+    <filter class="ch.qos.logback.core.filter.EvaluatorFilter">
+      <evaluator class="ch.qos.logback.classic.boolex.OnMarkerEvaluator">
+	<marker>METRIC</marker>
+      </evaluator>
+      <onMismatch>DENY</onMismatch>
+      <onMatch>ACCEPT</onMatch>
+    </filter>
+  </appender>
+
+  <appender name="relp-audit" class="com.teragrep.jla_01.RlpLogbackAppender">
+    <relpHostAddress>localhost</relpHostAddress>
+    <relpPort>1666</relpPort>
+    <enableEventId48577>true</enableEventId48577>
+    <appName>logback-audit</appName>
+    <hostname>javalogger-example</hostname>
+    <connectionTimeout>5000</connectionTimeout>
+    <writeTimeout>2000</writeTimeout>
+    <readTimeout>15000</readTimeout>
+    <encoder>
+      <pattern>%-4relative %X{requestId} [%thread] %-5level %logger{35} Audit - %msg</pattern>
+    </encoder>
+    <filter class="ch.qos.logback.core.filter.EvaluatorFilter">
+      <evaluator class="ch.qos.logback.classic.boolex.OnMarkerEvaluator">
+	<marker>AUDIT</marker>
+      </evaluator>
+      <onMismatch>DENY</onMismatch>
+      <onMatch>ACCEPT</onMatch>
+    </filter>
+  </appender>
+
+  <logger name="com.teragrep.jla_02.Logback" level="TRACE" additivity="false">
+    <appender-ref ref="relp-audit" />
+    <appender-ref ref="relp-daily" />
+    <appender-ref ref="relp-metric" />
+  </logger>
+</configuration>
