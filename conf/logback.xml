@@ -16,7 +16,7 @@
 
   <appender name="relp-daily" class="com.teragrep.jla_01.RlpLogbackAppender">
     <relpHostAddress>localhost</relpHostAddress>
-    <relpPort>1666</relpPort>
+    <relpPort>10601</relpPort>
     <enableEventId48577>true</enableEventId48577>
     <appName>logback-daily</appName>
     <hostname>javalogger-example</hostname>
@@ -37,7 +37,7 @@
 
   <appender name="relp-metric" class="com.teragrep.jla_01.RlpLogbackAppender">
     <relpHostAddress>localhost</relpHostAddress>
-    <relpPort>1666</relpPort>
+    <relpPort>10601</relpPort>
     <enableEventId48577>true</enableEventId48577>
     <appName>logback-metric</appName>
     <hostname>javalogger-example</hostname>
@@ -58,7 +58,7 @@
 
   <appender name="relp-audit" class="com.teragrep.jla_01.RlpLogbackAppender">
     <relpHostAddress>localhost</relpHostAddress>
-    <relpPort>1666</relpPort>
+    <relpPort>10601</relpPort>
     <enableEventId48577>true</enableEventId48577>
     <appName>logback-audit</appName>
     <hostname>javalogger-example</hostname>

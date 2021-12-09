@@ -4,7 +4,7 @@
   <appender name="RelpAppender"
 	    class="com.teragrep.jla_05.RelpAppender">
     <param name="relpAddress" value="localhost" />
-    <param name="relpPort" value="1666" />
+    <param name="relpPort" value="10601" />
     <param name="appName" value="jla_05" />
     <param name="hostname" value="javalogger-example" />
     <param name="useSD" value="true" />
