@@ -4,8 +4,6 @@
     <Property name="LOG_NAME_DAILY">log4j2-daily</Property>
     <Property name="LOG_NAME_AUDIT">log4j2-audit</Property>
     <Property name="LOG_NAME_METRIC">log4j2-metric</Property>
-    <Property name="applicationName">jla_02</Property>
-    <Property name="hostName">localhost</Property>
     <Property name="INSTANCE_ID">01</Property>
   </Properties>
   <Appenders>
