@@ -24,7 +24,7 @@ public class Main {
                 }
             }
         );
-        //Log4j2.start();
+        Log4j2.start();
 
         Thread Log4j = new Thread(
             new Runnable(){
@@ -43,7 +43,7 @@ public class Main {
                 }
             }
         );
-        //Log4j.start();
+        Log4j.start();
 
         Thread JavaUtilLoggingLogger = new Thread(
             new Runnable(){
@@ -82,7 +82,7 @@ public class Main {
                 }
             }
         );
-        //Logback.start();
+        Logback.start();
 
         Thread Tinylog = new Thread(
             new Runnable() {
