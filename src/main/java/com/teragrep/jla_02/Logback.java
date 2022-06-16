@@ -6,7 +6,9 @@ import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
 import ch.qos.logback.classic.util.ContextInitializer;
 
-public class Logback {
+import java.util.TimerTask;
+
+public class Logback extends TimerTask {
     private static Logger logger;
     private static Marker LOG_AUDIT = MarkerFactory.getMarker("AUDIT");
     private static Marker LOG_DAILY = MarkerFactory.getMarker("DAILY");
@@ -22,7 +24,8 @@ public class Logback {
 
     }
 
-    public void Log() {
+    @Override
+    public void run() {
         try {
             logger.info(LOG_AUDIT, "Logback-audit says hi.");
             logger.info(LOG_DAILY, "Logback-daily says hi.");

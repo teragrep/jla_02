@@ -3,10 +3,11 @@ package com.teragrep.jla_02;
 import com.teragrep.jla_04.*;
 
 import java.io.*;
+import java.util.TimerTask;
 import java.util.concurrent.TimeoutException;
 import java.util.logging.*;
 
-public class JavaUtilLoggingLogger {
+public class JavaUtilLoggingLogger extends TimerTask {
     static {
     }
     static Logger logger = Logger.getLogger(JavaUtilLoggingLogger.class.getName());
@@ -33,7 +34,8 @@ public class JavaUtilLoggingLogger {
         logger.addHandler(handler);
     }
 
-    public void Log() {
+    @Override
+    public void run() {
         try {
             logger.info("JavaUtilLoggingLogger info says hi");
             logger.warning("JavaUtilLoggingLogger warning says hi");

@@ -6,7 +6,9 @@ import org.apache.logging.log4j.MarkerManager;
 import org.apache.logging.log4j.core.config.xml.XmlConfigurationFactory;
 import org.apache.logging.log4j.LogManager;
 
-public class Log4j2 {
+import java.util.TimerTask;
+
+public class Log4j2  extends TimerTask {
     private static Logger logger;
     private static Marker LOG_AUDIT;
     private static Marker LOG_DAILY;
@@ -20,7 +22,8 @@ public class Log4j2 {
         LOG_METRIC = MarkerManager.getMarker("METRIC");
     }
 
-    public void Log() {
+    @Override
+    public void run() {
         try {
             logger.info(LOG_AUDIT, "Log4j2 info audit says hi!");
             logger.info(LOG_DAILY, "Log4j2 info daily says hi!");

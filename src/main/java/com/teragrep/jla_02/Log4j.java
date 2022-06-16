@@ -3,7 +3,9 @@ package com.teragrep.jla_02;
 import org.apache.log4j.Logger;
 import org.apache.log4j.xml.DOMConfigurator;
 
-public class Log4j {
+import java.util.TimerTask;
+
+public class Log4j extends TimerTask {
 
     private static Logger logger;
 
@@ -12,7 +14,8 @@ public class Log4j {
         logger = Logger.getLogger(Log4j.class);
     }
 
-    public void Log() {
+    @Override
+    public void run() {
         try {
             logger.info("Log4j info says hi!");
             logger.warn("Log4j warn says hi!");
