@@ -17,18 +17,21 @@ public class JavaUtilLoggingLogger extends TimerTask {
             inputStream = new FileInputStream(System.getProperty("user.dir") + "/conf/logging.properties");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+            System.exit(1);
         }
         try {
             LogManager.getLogManager().readConfiguration(inputStream);
         }
         catch (IOException e) {
             System.out.println("Can't read conf/logging.properties: " + e.getMessage());
+            System.exit(1);
         }
         RelpHandler handler = null;
         try {
             handler = new RelpHandler();
         } catch (NoSuchFieldException | IOException | TimeoutException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
+            System.exit(1);
         }
         LogManager.getLogManager().reset();
         logger.addHandler(handler);
