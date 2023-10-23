@@ -49,3 +49,14 @@ jobs:
         run: mvn --batch-mode -Drevision=${{ github.event.release.tag_name }} -Dsha1= -Dchangelist= clean deploy -Ppublish-github-packages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Pack RPM
+        run: cd rpm/ && mvn --batch-mode -Drevision=${{ github.event.release.tag_name }} -Dsha1= -Dchangelist= -f rpm.pom.xml package
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
+
+      - name: Attach rpm to release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: rpm/target/rpm/com.teragrep-jla_02/RPMS/noarch/com.teragrep-jla_02-*.rpm
